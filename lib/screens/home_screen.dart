@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controllers/tap_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +13,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    // dependency injection
+    // initialize the controller
+    final controller = Get.put(TapController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -36,7 +43,9 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(width: 16),
             IconButton.filled(
-              onPressed: () {},
+              onPressed: () {
+                controller.increment();
+              },
               icon: const Icon(Icons.add),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.green),

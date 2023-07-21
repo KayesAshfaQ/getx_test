@@ -6,6 +6,7 @@ class TapController extends GetxController {
 
   void increment() {
     _counter++;
+    print('increment: $_counter');
     update();
   }
 }
