@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/tap_controller.dart';
+import 'second_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,47 +26,61 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton.filled(
-              onPressed: () {
-                // when counter is already 0, show snackbar and return
-                if (controller.counter == 0) {
-                  // show snackbar
-                  showSnackbar(context);
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton.filled(
+                onPressed: () {
+                  // when counter is already 0, show snackbar and return
+                  if (controller.counter == 0) {
+                    // show snackbar
+                    showSnackbar(context);
 
-                  return;
-                }
-                controller.decrement();
-              },
-              icon: const Icon(Icons.remove),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.red),
+                    return;
+                  }
+                  controller.decrement();
+                },
+                icon: const Icon(Icons.remove),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                ),
               ),
-            ),
-            const SizedBox(width: 16),
-            GetBuilder<TapController>(
-              builder: (_) {
-                return Text(
-                  controller.counter.toString(),
-                  style: Theme.of(context).textTheme.displayLarge,
-                );
-              },
-            ),
-            const SizedBox(width: 16),
-            IconButton.filled(
-              onPressed: () {
-                controller.increment();
-              },
-              icon: const Icon(Icons.add),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.green),
+              const SizedBox(width: 16),
+              GetBuilder<TapController>(
+                builder: (_) {
+                  return Text(
+                    controller.counter.toString(),
+                    style: Theme.of(context).textTheme.displayLarge,
+                  );
+                },
               ),
+              const SizedBox(width: 16),
+              IconButton.filled(
+                onPressed: () {
+                  controller.increment();
+                },
+                icon: const Icon(Icons.add),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              // navigate to second screen
+              Get.to(() => const SecondScreen());
+            },
+            child: Text(
+              'Go to second screen',
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
