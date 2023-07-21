@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(width: 16),
             GetBuilder<TapController>(
-              builder: (controller) {
+              builder: (_) {
                 return Text(
                   controller.counter.toString(),
                   style: Theme.of(context).textTheme.displayLarge,
