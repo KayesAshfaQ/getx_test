@@ -37,9 +37,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(width: 16),
-            Text(
-              '01',
-              style: Theme.of(context).textTheme.displayLarge,
+            GetBuilder<TapController>(
+              builder: (controller) {
+                return Text(
+                  controller.counter.toString(),
+                  style: Theme.of(context).textTheme.displayLarge,
+                );
+              },
             ),
             const SizedBox(width: 16),
             IconButton.filled(
