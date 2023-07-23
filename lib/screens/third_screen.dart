@@ -36,6 +36,7 @@ class ThirdScreen extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
+              // navigate to HomeScreen and remove all previous screens
               Get.offAll(() => const HomeScreen());
             },
             child: const Text('Home'),
