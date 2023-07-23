@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_test/screens/third_screen.dart';
 
 import '../controllers/tap_controller.dart';
 
@@ -17,47 +18,55 @@ class _SecondScreenState extends State<SecondScreen> {
     final controller = Get.find<TapController>();
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Get-x',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text(
+          'Get-x',
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Second Screen',
-              style: Theme.of(context).textTheme.displayMedium,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Second Screen',
+            style: Theme.of(context).textTheme.displayMedium,
+            textAlign: TextAlign.center,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Divider(height: 16),
+          ),
+          GetBuilder<TapController>(builder: (_) {
+            return Text(
+              'Count: ${controller.counter}',
+              style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
-            ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Divider(height: 16),
-            ),
-            GetBuilder<TapController>(builder: (_) {
-              return Text(
-                'Count: ${controller.counter}',
-                style: Theme.of(context).textTheme.titleLarge,
-                textAlign: TextAlign.center,
-              );
-            }),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                controller.counter += 5;
-              },
-              child: const Text('ADD 5'),
-            )
-          ],
-        ));
+            );
+          }),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              controller.counter += 5;
+            },
+            child: const Text('ADD 5'),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              Get.to(() => const ThirdScreen());
+            },
+            child: const Text('Go to Third-Screen'),
+          ),
+        ],
+      ),
+    );
   }
 }
